@@ -28,17 +28,18 @@ namespace PhoneApi.Controllers
         }
 
         [HttpPost]
-        [Route("fblogin/{facebookId}")]
-        public ApiResponse<Credentials> FacebookLogin(string facebookId)
+        [Route("fblogin")]
+        public ApiResponse<Credentials> FacebookLogin([FromBody]String fbid)
         {
             var response = new ApiResponse<Credentials>();
+            response.Result = false;
 
-            Credentials credentials = GetCredentials(facebookId);
+            Credentials credentials = GetCredentials(fbid);
             
-            if (credentials == null)
+            if (credentials != null)
             {
-
-
+                response.Result = true;
+                response.ReturnData = credentials;
             }
 
             return response;
@@ -49,7 +50,12 @@ namespace PhoneApi.Controllers
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("App")))
             {
-                return connection.Query<Credentials>($"select * from credentials where usrname = '{username}'").ToList().FirstOrDefault();
+                var result = connection.Query<Credentials>($"dbo.getFacebookCredentials @fbid'{username}'").ToList().FirstOrDefault();
+                if (result == null)
+                {
+                    Credentials newCredentials = connection.Query<Credentials>($"select * from credentials where usrname = '{username}'").ToList().FirstOrDefault();
+                }
+                return result;
             }
         }
 
@@ -57,7 +63,12 @@ namespace PhoneApi.Controllers
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("App")))
             {
-                return connection.Query<Credentials>($"select * from credentials where fbid = '{facebookId}'").ToList().FirstOrDefault();
+                Credentials result = connection.Query<Credentials>("dbo.getFacebookCredentials @fbid",new {fbid = facebookId }).ToList().FirstOrDefault();
+                if (result == null)
+                {
+                    result = connection.Query<Credentials>("dbo.CreateFacebookCredentials @fbid", new { fbid = facebookId }).ToList().FirstOrDefault();
+                }
+                return result;
             }
         }
 

@@ -7,5 +7,6 @@ namespace PhoneAPI.Models
         Guid UserId { get; set; }
         String usrname { get; set; }
         String Psw { get; set; }
+        String FbId { get; set; }
     }
 }
