@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Dapper;
+using PhoneApi.Models;
 using PhoneAPI.Models;
 using PhoneAPI.Utils;
 
@@ -30,12 +31,12 @@ namespace PhoneApi.Controllers
 
         [HttpPost]
         [Route("fblogin")]
-        public ApiResponse<Credentials> FacebookLogin([FromBody]Credentials creds) 
+        public ApiResponse<Credentials> FacebookLogin([FromBody]FacebookInfo info) 
         { 
             var response = new ApiResponse<Credentials>();
             response.Result = false;
 
-            Credentials credentials = GetFacebookCredentials(creds.FbId);
+            Credentials credentials = GetFacebookCredentials(info.id);
             
             if (credentials != null)
             {
