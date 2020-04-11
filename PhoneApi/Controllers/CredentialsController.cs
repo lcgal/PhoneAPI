@@ -11,11 +11,11 @@ using PhoneAPI.Utils;
 
 namespace PhoneApi.Controllers
 {
-    [RoutePrefix("Credentials")]
+    [RoutePrefix("credentials")]
     public class CredentialsController : ApiController
     {
         [HttpPost]
-        [Route("Login/{username}/{password}")]
+        [Route("login/{username}/{password}")]
         public ApiResponse<Credentials> Login(string username, string password)
         {
             var response = new ApiResponse<Credentials>();
@@ -27,12 +27,46 @@ namespace PhoneApi.Controllers
             return response;
         }
 
+        [HttpPost]
+        [Route("fblogin/{facebookId}")]
+        public ApiResponse<Credentials> FacebookLogin(string facebookId)
+        {
+            var response = new ApiResponse<Credentials>();
+
+            Credentials credentials = GetCredentials(facebookId);
+            
+            if (credentials == null)
+            {
+
+
+            }
+
+            return response;
+        }
+
 
         private Credentials GetCredentials(String username)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("App")))
             {
                 return connection.Query<Credentials>($"select * from credentials where usrname = '{username}'").ToList().FirstOrDefault();
+            }
+        }
+
+        private Credentials GetFacebookCredentials(String facebookId)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("App")))
+            {
+                return connection.Query<Credentials>($"select * from credentials where fbid = '{facebookId}'").ToList().FirstOrDefault();
+            }
+        }
+
+        private Credentials CreateFacebookCredentials(String facebookId)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("App")))
+            {
+                Guid userId = new Guid();
+                return connection.Query<Credentials>($"insert into credentials (UserId,FbId) values ('{userId}','{facebookId}'").ToList().FirstOrDefault();
             }
         }
     }
