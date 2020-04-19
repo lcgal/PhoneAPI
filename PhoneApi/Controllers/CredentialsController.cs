@@ -17,34 +17,63 @@ namespace PhoneApi.Controllers
     public class CredentialsController : ApiController
     {
         [HttpGet]
-        [Route("login/{username}/{password}")]
-        public ApiResponse<Credentials> Login(string username, string password)
+        [Route("test")]
+        public Credentials Login()
         {
             var response = new ApiResponse<Credentials>();
 
+            String username = "test";
+
             //Credentials credentials = GetCredentials(username);
-
-
-
-            return response;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("App")))
+            {
+                Credentials newCredentials = connection.Query<Credentials>($"select * from credentials where usrname = 'test'").ToList().FirstOrDefault();
+                return newCredentials;
+            }
         }
 
         [HttpPost]
         [Route("fblogin")]
-        public ApiResponse<Credentials> FacebookLogin([FromBody]FacebookInfo info) 
-        { 
-            var response = new ApiResponse<Credentials>();
-            response.Result = false;
+        public ApiResponse<Profile> FacebookLogin([FromBody]Profile profile) 
+        {
 
-            Credentials credentials = GetFacebookCredentials(info.id);
-            
-            if (credentials != null)
+            var response = new ApiResponse<Profile>();
+
+            try
             {
-                response.Result = true;
-                response.ReturnData = credentials;
+                Credentials bdCredentials = new Credentials();
+
+                User bdUser = new User();
+                response.Result = false;
+
+            try
+            {
+                bdCredentials = GetFacebookCredentials(profile.credentials.FbId);
+                bdUser = GetUser(profile.User, bdCredentials.UserId);
+            } catch (Exception e)
+            {
+                response.Result = false;
+                response.Error = e.Message;
             }
 
-            return response;
+                Profile bdProfile = new Profile();
+                bdProfile.UserId = bdCredentials.UserId;
+                bdProfile.credentials = bdCredentials;
+                bdProfile.User = bdUser;
+
+
+                response.Result = true;
+                response.ReturnData = bdProfile;
+         
+
+                return response;
+            }
+            catch (Exception e)
+            {
+                response.Result = false;
+                response.Error = e.Message;
+                return response;
+            }
         }
 
 
@@ -65,7 +94,7 @@ namespace PhoneApi.Controllers
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("App")))
             {
-                Credentials result = connection.Query<Credentials>("dbo.getFacebookCredentials @fbid",new {fbid = facebookId }).ToList().FirstOrDefault();
+                Credentials result = connection.Query<Credentials>("dbo.GetFacebookCredentials @fbid",new {fbid = facebookId }).ToList().FirstOrDefault();
                 if (result == null)
                 {
                     result = connection.Query<Credentials>("dbo.CreateFacebookCredentials @fbid", new { fbid = facebookId }).ToList().FirstOrDefault();
@@ -74,13 +103,21 @@ namespace PhoneApi.Controllers
             }
         }
 
-        private Credentials CreateFacebookCredentials(String facebookId)
+        private User GetUser(User user, Guid userid)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("App")))
             {
-                Guid userId = new Guid();
-                return connection.Query<Credentials>($"insert into credentials (UserId,FbId) values ('{userId}','{facebookId}'").ToList().FirstOrDefault();
+                User result = connection.Query<User>("dbo.getUser @userId", new { userId = user.UserId }).ToList().FirstOrDefault();
+                if (result == null)
+                {
+                    result = connection.Query<User>("dbo.CreateUser @userid , @firstname , @lastname , @email , @photoUrl", 
+                        new { userid, firstname = user.FirstName, lastname = user.LastName, email = user.Email, photoUrl = user.PhotoUrl }).ToList().FirstOrDefault();
+                }
+
+                return result;
             }
         }
+
+        
     }
 }
