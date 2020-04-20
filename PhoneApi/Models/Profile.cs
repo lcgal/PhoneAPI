@@ -8,9 +8,9 @@ namespace PhoneApi.Models
 {
     public class Profile
     {
-        public Guid UserId { get; set; }
+        public Guid userId { get; set; }
         public Credentials credentials { get; set; }
-        public User User { get; set; }
+        public User user { get; set; }
 
     }
 }
