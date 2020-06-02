@@ -4,8 +4,9 @@ namespace PhoneAPI.Models
 {
     public class Credentials
     {
-        Guid UserId { get; set; }
-        String usrname { get; set; }
-        String Psw { get; set; }
+        public Guid userId { get; set; }
+        public String usrname { get; set; }
+        public String psw { get; set; }
+        public String fbId { get; set; }
     }
 }

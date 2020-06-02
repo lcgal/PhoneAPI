@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Default Web Site/PhoneApi" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Repositorios\ Pessoais\\PhoneApi\\PhoneApi\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\Repositorios\ Pessoais\\PhoneApi\\PhoneApi\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="App-Web.config Connection String" description="" value="Data Source=.;Initial Catalog=App;Integrated Security=True" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\Repositorios\ Pessoais\\PhoneAPI\\PhoneApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='App']/@connectionString" />
+  </parameter>
+</parameters>
