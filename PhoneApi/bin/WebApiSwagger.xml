@@ -481,5 +481,269 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:boardgames">
+            <remarks/>
+        </member>
+        <member name="P:boardgames.boardgame">
+            <remarks/>
+        </member>
+        <member name="P:boardgames.termsofuse">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgame">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.yearpublished">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.minplayers">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.maxplayers">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.playingtime">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.minplaytime">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.maxplaytime">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.age">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.description">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.thumbnail">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.image">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.name">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.boardgamepublisher">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.boardgamepodcastepisode">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.boardgamehonor">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.boardgamemechanic">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.boardgamefamily">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.boardgameversion">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.boardgamedesigner">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.boardgamecategory">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.rpgpodcastepisode">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.boardgameimplementation">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.videogamebg">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.boardgameartist">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.boardgamesubdomain">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.poll">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgame.objectid">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameName">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameName.sortindex">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameName.primary">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameName.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameBoardgamepublisher">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamepublisher.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamepublisher.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameBoardgamepodcastepisode">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamepodcastepisode.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamepodcastepisode.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameBoardgamehonor">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamehonor.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamehonor.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameBoardgamemechanic">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamemechanic.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamemechanic.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameBoardgamefamily">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamefamily.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamefamily.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameBoardgameversion">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgameversion.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgameversion.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameBoardgamedesigner">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamedesigner.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamedesigner.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameBoardgamecategory">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamecategory.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamecategory.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameRpgpodcastepisode">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameRpgpodcastepisode.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameRpgpodcastepisode.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameBoardgameimplementation">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgameimplementation.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgameimplementation.inbound">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgameimplementation.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameVideogamebg">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameVideogamebg.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameVideogamebg.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameBoardgameartist">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgameartist.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgameartist.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgameBoardgamesubdomain">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamesubdomain.objectid">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgameBoardgamesubdomain.Value">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgamePoll">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgamePoll.results">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgamePoll.name">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgamePoll.title">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgamePoll.totalvotes">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgamePollResults">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgamePollResults.result">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgamePollResults.numplayers">
+            <remarks/>
+        </member>
+        <member name="T:boardgamesBoardgamePollResultsResult">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgamePollResultsResult.value">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgamePollResultsResult.numvotes">
+            <remarks/>
+        </member>
+        <member name="P:boardgamesBoardgamePollResultsResult.level">
+            <remarks/>
+        </member>
+        <member name="T:NewDataSet">
+            <remarks/>
+        </member>
+        <member name="P:NewDataSet.Items">
+            <remarks/>
+        </member>
     </members>
 </doc>

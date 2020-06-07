@@ -177,9 +177,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BggApi\boardgames.cs" />
+    <Compile Include="Models\GamesFamily.cs" />
+    <Compile Include="Models\GamesMechanic.cs" />
+    <Compile Include="Models\GamesList.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\FacebookInfo.cs" />
     <Compile Include="Utils\ApiResponse.cs" />
+    <Compile Include="Utils\CustomUtf8EncodingProvider.cs" />
     <Compile Include="Utils\Helper.cs" />
     <Compile Include="Utils\JsonContent.cs" />
     <Compile Include="Models\Credentials.cs" />

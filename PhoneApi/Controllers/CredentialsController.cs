@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Web;
 using System.Web.Http;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 using Dapper;
 using PhoneApi.Models;
+using PhoneApi.Utils;
 using PhoneAPI.Models;
 using PhoneAPI.Utils;
 
@@ -118,6 +124,76 @@ namespace PhoneApi.Controllers
             }
         }
 
-        
+        [HttpGet]
+        [Route("teste")]
+        public async System.Threading.Tasks.Task<ApiResponse<Credentials>> TestAsync()
+        {
+            var response = new ApiResponse<Credentials>();
+            HttpClient _client = new HttpClient();
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
+
+            HttpResponseMessage test = _client.GetAsync(new Uri("https://www.boardgamegeek.com/xmlapi/boardgame/161936")).Result;
+
+            EncodingProvider provider = new CustomUtf8EncodingProvider();
+            Encoding.RegisterProvider(provider);
+
+            if (test.StatusCode == HttpStatusCode.OK)
+            {
+                XDocument xdoc = XDocument.Parse(test.Content.ReadAsStringAsync().Result);
+
+                StringReader sr = new StringReader(xdoc.ToString());
+
+                XmlSerializer serializer = new XmlSerializer(typeof(boardgames));
+
+                boardgames result = (boardgames)serializer.Deserialize(sr);
+
+                var game = result.boardgame.FirstOrDefault();
+
+                GamesList gamelist = new GamesList();
+                List<GamesMechanic> mechanicslist = new List<GamesMechanic>();
+                List<GamesFamily> familieslist = new List<GamesFamily>();
+
+                gamelist.id = Convert.ToInt64(game.objectid);
+
+                var nameList = game.name.ToList();
+                foreach(var name in nameList)
+                {
+                    if (name.primary!= null && name.primary == "true")
+                    {
+                        gamelist.name = name.Value;
+                    }
+                }
+
+                gamelist.minPlayers = Convert.ToInt32(game.minplayers);
+                gamelist.maxPlayers = Convert.ToInt32(game.maxplayers);
+                gamelist.thumbnail = game.thumbnail;
+
+                var mechanicList = game.boardgamemechanic.ToList();
+                foreach(var mechanic in mechanicList)
+                {
+                    GamesMechanic gameMechanic = new GamesMechanic();
+                    gameMechanic.id = Convert.ToInt64(game.objectid);
+                    gameMechanic.mechanic = mechanic.Value;
+                    mechanicslist.Add(gameMechanic);
+                }
+
+                var familyList = game.boardgamemechanic.ToList();
+                foreach (var family in familyList)
+                {
+                    GamesFamily gameFamily = new GamesFamily();
+                    gameFamily.id = Convert.ToInt64(game.objectid);
+                    gameFamily.family = family.Value;
+                    familieslist.Add(gameFamily);
+                }
+
+                var ops = "test";
+            }
+
+
+
+            return response;
+        }
+
+
     }
 }
