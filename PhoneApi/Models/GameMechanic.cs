@@ -2,9 +2,9 @@
 
 namespace PhoneAPI.Models
 {
-    public class GamesMechanic
+    public class GameMechanic
     {
-        public long id { get; set; }
+        public long gameId { get; set; }
         public String mechanic { get; set; }
     }
 }

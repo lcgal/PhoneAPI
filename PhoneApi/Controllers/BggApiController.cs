@@ -67,32 +67,32 @@ namespace PhoneApi.Controllers
                         foreach (var game in responsegameslist)
                         {
 
-                            GamesList gamelist = new GamesList();
-                            List<GamesMechanic> mechanicslist = new List<GamesMechanic>();
-                            List<GamesFamily> familieslist = new List<GamesFamily>();
+                            Game gameObj = new Game();
+                            List<GameMechanic> mechanicslist = new List<GameMechanic>();
+                            List<GameFamily> familieslist = new List<GameFamily>();
 
-                            gamelist.id = Convert.ToInt64(game.objectid);
+                            gameObj.id = Convert.ToInt64(game.objectid);
 
                             var nameList = game.name.ToList();
                             foreach (var name in nameList)
                             {
                                 if (name.primary != null && name.primary == "true")
                                 {
-                                    gamelist.name = name.Value;
+                                    gameObj.name = name.Value;
                                 }
                             }
 
-                            gamelist.minPlayers = Convert.ToInt32(game.minplayers);
-                            gamelist.maxPlayers = Convert.ToInt32(game.maxplayers);
-                            gamelist.thumbnail = game.thumbnail;
+                            gameObj.minPlayers = Convert.ToInt32(game.minplayers);
+                            gameObj.maxPlayers = Convert.ToInt32(game.maxplayers);
+                            gameObj.thumbnail = game.thumbnail;
 
                             var mechanicList = game.boardgamemechanic?.ToList();
                             if (mechanicList != null)
                             {
                                 foreach (var mechanic in mechanicList)
                                 {
-                                    GamesMechanic gameMechanic = new GamesMechanic();
-                                    gameMechanic.id = Convert.ToInt64(game.objectid);
+                                    GameMechanic gameMechanic = new GameMechanic();
+                                    gameMechanic.gameId = Convert.ToInt64(game.objectid);
                                     gameMechanic.mechanic = mechanic.Value;
                                     mechanicslist.Add(gameMechanic);
                                 }
@@ -103,8 +103,8 @@ namespace PhoneApi.Controllers
                             {
                                 foreach (var family in familyList)
                                 {
-                                    GamesFamily gameFamily = new GamesFamily();
-                                    gameFamily.id = Convert.ToInt64(game.objectid);
+                                    GameFamily gameFamily = new GameFamily();
+                                    gameFamily.gameId = Convert.ToInt64(game.objectid);
                                     gameFamily.family = family.Value;
                                     familieslist.Add(gameFamily);
                                 }
@@ -113,18 +113,18 @@ namespace PhoneApi.Controllers
 
                             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("App")))
                             {
-                                connection.Query<GamesList>($"dbo.[InsertGameinList] @id, @name, @minPlayers, @maxPlayers, @thumbnail",
-                                    new { gamelist.id, gamelist.name, gamelist.minPlayers, gamelist.maxPlayers, gamelist.thumbnail });
-                                foreach (GamesMechanic mechanic in mechanicslist)
+                                connection.Query<Game>($"dbo.[InsertGameinList] @id, @name, @minPlayers, @maxPlayers, @thumbnail",
+                                    new { gameObj.id, gameObj.name, gameObj.minPlayers, gameObj.maxPlayers, gameObj.thumbnail });
+                                foreach (GameMechanic mechanic in mechanicslist)
                                 {
-                                    connection.Query<GamesMechanic>($"dbo.[InsertGameMechanics] @id, @mechanic",
-                                        new { mechanic.id, mechanic.mechanic });
+                                    connection.Query<GameMechanic>($"dbo.[InsertGameMechanics] @id, @mechanic",
+                                        new { mechanic.gameId, mechanic.mechanic });
                                 }
 
-                                foreach (GamesFamily family in familieslist)
+                                foreach (GameFamily family in familieslist)
                                 {
-                                    connection.Query<GamesFamily>($"dbo.[InsertGameFamilies] @id, @family",
-                                        new { family.id, family.family });
+                                    connection.Query<GameFamily>($"dbo.[InsertGameFamilies] @id, @family",
+                                        new { family.gameId, family.family });
                                 }
                             }
 
