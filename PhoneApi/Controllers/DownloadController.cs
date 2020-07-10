@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Newtonsoft.Json;
+using PhoneApi.Models.Responses;
 using PhoneAPI.Models;
 using PhoneAPI.Utils;
 using System;
@@ -14,28 +15,32 @@ using System.Web.Http;
 
 namespace PhoneApi.Controllers
 {
-    [RoutePrefix("bggapi")]
+    [RoutePrefix("download")]
     public class DownloadController : ApiController
     {
         [HttpGet]
         [Route("gamelist/{version}")]
-        public List<Game> GetGameList(string version)
+        public GameListResponse GetGameList(string version)
         {
+            GameListResponse response = new GameListResponse();
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("App")))
             {
                 string bdVersion = connection.Query<string>($"select value from settings where [key] = 'GamesListVersion'").ToList().FirstOrDefault();
 
                 if (bdVersion == version)
                 {
-                    return null;
+                    response.update = false;
+                    return response;
                 }
 
                 StreamReader r = new StreamReader(@"D:\Repositorios Pessoais\games.json");
                 string json = r.ReadToEnd();
 
                 List<Game> games = JsonConvert.DeserializeObject<List<Game>>(json);
-
-                return games;
+                response.version = bdVersion;
+                response.data = games;
+                response.update = true;
+                return response;
             }
         }
 

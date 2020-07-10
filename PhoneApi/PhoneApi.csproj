@@ -185,6 +185,7 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\FacebookInfo.cs" />
+    <Compile Include="Models\Responses\GameListResponse.cs" />
     <Compile Include="Utils\ApiResponse.cs" />
     <Compile Include="Utils\CustomUtf8EncodingProvider.cs" />
     <Compile Include="Utils\Helper.cs" />
