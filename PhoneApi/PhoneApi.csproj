@@ -182,6 +182,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BggApi\boardgames.cs" />
+    <Compile Include="Models\GameRoomMember.cs" />
     <Compile Include="Models\GameOffer.cs" />
     <Compile Include="Models\GameFamily.cs" />
     <Compile Include="Models\GameMechanic.cs" />

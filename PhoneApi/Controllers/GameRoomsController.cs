@@ -41,7 +41,7 @@ namespace PhoneApi.Controllers
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("App")))
             {
-                return connection.Query<Guid>($"dbo.[CreateGameOffer] @gameid, @latitude, @longitude", new { offer.Gameid, offer.Latitude, offer.Longitude }).FirstOrDefault();
+                return connection.Query<Guid>($"dbo.[CreateGameRoom] @gameid, @latitude, @longitude, @userid", new { offer.Gameid, offer.Latitude, offer.Longitude, offer.UserId }).FirstOrDefault();
             }
         }
     }
