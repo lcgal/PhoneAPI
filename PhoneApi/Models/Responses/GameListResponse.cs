@@ -8,10 +8,10 @@ namespace PhoneApi.Models.Responses
 {
     public class GameListResponse
     {
-        public bool update { get; set; }
+        public bool Update { get; set; }
 
-        public String version { get; set; }
+        public string Version { get; set; }
 
-        public List<Game> data { get; set; }
+        public List<Game> Data { get; set; }
     }
 }

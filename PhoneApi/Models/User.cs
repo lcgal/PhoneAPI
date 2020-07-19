@@ -4,21 +4,21 @@ namespace PhoneAPI.Models
 {
     public class User
     {
-        public Guid userId { get; set; }
+        public Guid UserId { get; set; }
 
-        public String firstName { get; set; }
+        public string FirstName { get; set; }
 
-        public String lastName { get; set; }
+        public string LastName { get; set; }
 
-        public String email { get; set; }
+        public string Email { get; set; }
 
-        public long latitude { get; set; }
+        public long Latitude { get; set; }
 
-        public long longitude { get; set; }
+        public long Longitude { get; set; }
 
-        public String description { get; set; }
+        public string Description { get; set; }
 
-        public String photoUrl { get; set; }
+        public string PhotoUrl { get; set; }
     }
 }
 

@@ -5,13 +5,13 @@ namespace PhoneAPI.Models
 {
     public class Game
     {
-        public long id { get; set; }
-        public String name { get; set; }
-        public int minPlayers { get; set; }
-        public int maxPlayers { get; set; }
-        public String thumbnail { get; set; }
+        public long Id { get; set; }
+        public String Name { get; set; }
+        public int MinPlayers { get; set; }
+        public int MaxPlayers { get; set; }
+        public String Thumbnail { get; set; }
 
-        public List<GameMechanic> mechanics { get; set; }
-        public List<GameFamily> families { get; set; }
+        public List<GameMechanic> Mechanics { get; set; }
+        public List<GameFamily> Families { get; set; }
     }
 }

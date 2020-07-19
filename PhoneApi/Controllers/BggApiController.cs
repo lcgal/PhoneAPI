@@ -71,20 +71,20 @@ namespace PhoneApi.Controllers
                             List<GameMechanic> mechanicslist = new List<GameMechanic>();
                             List<GameFamily> familieslist = new List<GameFamily>();
 
-                            gameObj.id = Convert.ToInt64(game.objectid);
+                            gameObj.Id = Convert.ToInt64(game.objectid);
 
                             var nameList = game.name.ToList();
                             foreach (var name in nameList)
                             {
                                 if (name.primary != null && name.primary == "true")
                                 {
-                                    gameObj.name = name.Value;
+                                    gameObj.Name = name.Value;
                                 }
                             }
 
-                            gameObj.minPlayers = Convert.ToInt32(game.minplayers);
-                            gameObj.maxPlayers = Convert.ToInt32(game.maxplayers);
-                            gameObj.thumbnail = game.thumbnail;
+                            gameObj.MinPlayers = Convert.ToInt32(game.minplayers);
+                            gameObj.MaxPlayers = Convert.ToInt32(game.maxplayers);
+                            gameObj.Thumbnail = game.thumbnail;
 
                             var mechanicList = game.boardgamemechanic?.ToList();
                             if (mechanicList != null)
@@ -92,8 +92,8 @@ namespace PhoneApi.Controllers
                                 foreach (var mechanic in mechanicList)
                                 {
                                     GameMechanic gameMechanic = new GameMechanic();
-                                    gameMechanic.gameId = Convert.ToInt64(game.objectid);
-                                    gameMechanic.mechanic = mechanic.Value;
+                                    gameMechanic.GameId = Convert.ToInt64(game.objectid);
+                                    gameMechanic.Mechanic = mechanic.Value;
                                     mechanicslist.Add(gameMechanic);
                                 }
                             }
@@ -104,8 +104,8 @@ namespace PhoneApi.Controllers
                                 foreach (var family in familyList)
                                 {
                                     GameFamily gameFamily = new GameFamily();
-                                    gameFamily.gameId = Convert.ToInt64(game.objectid);
-                                    gameFamily.family = family.Value;
+                                    gameFamily.GameId = Convert.ToInt64(game.objectid);
+                                    gameFamily.Family = family.Value;
                                     familieslist.Add(gameFamily);
                                 }
                             }
@@ -114,17 +114,17 @@ namespace PhoneApi.Controllers
                             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("App")))
                             {
                                 connection.Query<Game>($"dbo.[InsertGameinList] @id, @name, @minPlayers, @maxPlayers, @thumbnail",
-                                    new { gameObj.id, gameObj.name, gameObj.minPlayers, gameObj.maxPlayers, gameObj.thumbnail });
+                                    new { gameObj.Id, gameObj.Name, gameObj.MinPlayers, gameObj.MaxPlayers, gameObj.Thumbnail });
                                 foreach (GameMechanic mechanic in mechanicslist)
                                 {
                                     connection.Query<GameMechanic>($"dbo.[InsertGameMechanics] @id, @mechanic",
-                                        new { mechanic.gameId, mechanic.mechanic });
+                                        new { mechanic.GameId, mechanic.Mechanic });
                                 }
 
                                 foreach (GameFamily family in familieslist)
                                 {
                                     connection.Query<GameFamily>($"dbo.[InsertGameFamilies] @id, @family",
-                                        new { family.gameId, family.family });
+                                        new { family.GameId, family.Family });
                                 }
                             }
 

@@ -29,7 +29,7 @@ namespace PhoneApi.Controllers
 
                 if (bdVersion == version)
                 {
-                    response.update = false;
+                    response.Update = false;
                     return response;
                 }
 
@@ -37,9 +37,9 @@ namespace PhoneApi.Controllers
                 string json = r.ReadToEnd();
 
                 List<Game> games = JsonConvert.DeserializeObject<List<Game>>(json);
-                response.version = bdVersion;
-                response.data = games;
-                response.update = true;
+                response.Version = bdVersion;
+                response.Data = games;
+                response.Update = true;
                 return response;
             }
         }
@@ -63,10 +63,10 @@ namespace PhoneApi.Controllers
 
                 foreach (var game in games)
                 {
-                    game.mechanics = new List<GameMechanic>();
-                    game.families = new List<GameFamily>();
-                    game.mechanics.AddRange(mechanics.Where(x => x.gameId == game.id));
-                    game.families.AddRange(families.Where(x => x.gameId == game.id));
+                    game.Mechanics = new List<GameMechanic>();
+                    game.Families = new List<GameFamily>();
+                    game.Mechanics.AddRange(mechanics.Where(x => x.GameId == game.Id));
+                    game.Families.AddRange(families.Where(x => x.GameId == game.Id));
                 }
 
                 string json = JsonConvert.SerializeObject(games);

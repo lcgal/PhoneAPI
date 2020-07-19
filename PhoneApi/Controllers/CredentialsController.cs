@@ -55,8 +55,8 @@ namespace PhoneApi.Controllers
 
             try
             {
-                bdCredentials = GetFacebookCredentials(profile.credentials.fbId);
-                bdUser = GetUser(profile.user, bdCredentials.userId);
+                bdCredentials = GetFacebookCredentials(profile.Credentials.FbId);
+                bdUser = GetUser(profile.User, bdCredentials.UserId);
             } catch (Exception e)
             {
                 response.Result = false;
@@ -64,9 +64,9 @@ namespace PhoneApi.Controllers
             }
 
                 Profile bdProfile = new Profile();
-                bdProfile.userId = bdCredentials.userId;
-                bdProfile.credentials = bdCredentials;
-                bdProfile.user = bdUser;
+                bdProfile.UserId = bdCredentials.UserId;
+                bdProfile.Credentials = bdCredentials;
+                bdProfile.User = bdUser;
 
 
                 response.Result = true;
@@ -118,7 +118,7 @@ namespace PhoneApi.Controllers
                 if (result == null)
                 {
                     result = connection.Query<User>("dbo.CreateUser @userid , @firstname , @lastname , @email , @photoUrl", 
-                        new { userid, firstname = user.firstName, lastname = user.lastName, email = user.email, photoUrl = user.photoUrl }).ToList().FirstOrDefault();
+                        new { userid, firstname = user.FirstName, lastname = user.LastName, email = user.Email, photoUrl = user.PhotoUrl }).ToList().FirstOrDefault();
                 }
 
                 return result;

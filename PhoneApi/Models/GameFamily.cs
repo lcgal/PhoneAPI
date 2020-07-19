@@ -4,7 +4,7 @@ namespace PhoneAPI.Models
 {
     public class GameFamily
     {
-        public long gameId { get; set; }
-        public String family { get; set; }
+        public long GameId { get; set; }
+        public string Family { get; set; }
     }
 }
