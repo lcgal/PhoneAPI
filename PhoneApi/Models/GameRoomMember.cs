@@ -1,16 +1,16 @@
-﻿using PhoneAPI.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace PhoneApi.Models
 {
-    public class Profile
+    public class GameRoomMember
     {
-        public Guid UserId { get; set; }
-        public Credentials Credentials { get; set; }
-        public User User { get; set; }
+        public Guid OfferId { get; set; }
 
+        public Guid UserId { get; set; }
+
+        public bool IsHost { get; set; }
     }
 }

@@ -35,6 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\WebApiSwagger.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -172,14 +173,26 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\BggApiController.cs" />
     <Compile Include="Controllers\CredentialsController.cs" />
+    <Compile Include="Controllers\DownloadController.cs" />
+    <Compile Include="Controllers\GameRoomsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BggApi\boardgames.cs" />
+    <Compile Include="Models\GameRoomMember.cs" />
+    <Compile Include="Models\GameOffer.cs" />
+    <Compile Include="Models\GameFamily.cs" />
+    <Compile Include="Models\GameMechanic.cs" />
+    <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\FacebookInfo.cs" />
-    <Compile Include="Utils\ApiResponse.cs" />
+    <Compile Include="Models\Responses\BooleanResponse.cs" />
+    <Compile Include="Models\Responses\GameListResponse.cs" />
+    <Compile Include="Models\Responses\ApiResponse.cs" />
+    <Compile Include="Utils\CustomUtf8EncodingProvider.cs" />
     <Compile Include="Utils\Helper.cs" />
     <Compile Include="Utils\JsonContent.cs" />
     <Compile Include="Models\Credentials.cs" />

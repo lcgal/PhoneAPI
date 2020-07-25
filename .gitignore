@@ -13,4 +13,6 @@
 /captures
 .externalNativeBuild
 .vs/*
-/PhoneApi/bin
+PhoneApi/bin
+PhoneApi/bin/*
+PhoneApi/obj/*

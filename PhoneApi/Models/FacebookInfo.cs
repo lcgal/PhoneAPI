@@ -7,9 +7,9 @@ namespace PhoneApi.Models
 {
     public class FacebookInfo
     {
-        public String id { get; set; }
-        public String email { get; set; }
-        public long first_name { get; set; }
-        public long last_name { get; set; }
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public long First_name { get; set; }
+        public long Last_name { get; set; }
     }
 }
